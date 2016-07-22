@@ -46,3 +46,6 @@
 [submodule "plays/uclalib_role_users"]
 	path = plays/uclalib_role_users
 	url = git@github.com:UCLALibrary/ansible_uclalib_role_users.git
+[submodule "ansibleroot"]
+	path = ansibleroot
+	url = git@github.com:UCLALibrary/ansible_uclalib_configs.git
