@@ -1,3 +1,4 @@
 127.0.0.1	ansible	ansible
 127.0.0.1 localhost localhost.localdomain
 192.168.60.22 node1
+192.168.60.23 node2
