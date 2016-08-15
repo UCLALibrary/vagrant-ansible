@@ -2,3 +2,6 @@
 127.0.0.1 localhost localhost.localdomain
 192.168.60.22 node1
 192.168.60.23 node2
+192.168.60.19 node3
+192.168.60.24 haproxylb0
+192.168.60.25 haproxylb1
