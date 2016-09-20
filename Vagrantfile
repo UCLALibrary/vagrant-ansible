@@ -58,7 +58,8 @@ Vagrant.configure("2") do |config|
 	config.vm.define "node1" do |node1|
 		node1.vm.box = "rhel6-dev"
 		node1.vm.hostname = "node1"
-		node1.vm.network "private_network", ip: "192.168.60.22"
+		node1.vm.network "private_network", ip: "192.168.60.22" 
+    node1.vm.network "forwarded_port", guest: 22, host: 2250, protocol: "tcp"
 		node1.vm.provision "shell", inline: $create_ansible_user
 		node1.vm.provision "file", source: "./vagrant-ansible-authorized-keys", destination: "/tmp/authorized_keys"
 		node1.vm.provision "shell", inline: "mv /tmp/authorized_keys /home/ansible/.ssh/authorized_keys"
@@ -68,6 +69,7 @@ Vagrant.configure("2") do |config|
 		node2.vm.box = "rhel6-dev"
 		node2.vm.hostname = "node2"
 		node2.vm.network "private_network", ip: "192.168.60.23"
+    node2.vm.network :forwarded_port, guest: 22, host: 2251, protocol: "tcp"
 		node2.vm.provision "shell", inline: $create_ansible_user
 		node2.vm.provision "file", source: "./vagrant-ansible-authorized-keys", destination: "/tmp/authorized_keys"
 		node2.vm.provision "shell", inline: "mv /tmp/authorized_keys /home/ansible/.ssh/authorized_keys"
@@ -77,6 +79,7 @@ Vagrant.configure("2") do |config|
 		node3.vm.box = "rhel6-dev"
 		node3.vm.hostname = "node3"
 		node3.vm.network "private_network", ip: "192.168.60.19"
+    node3.vm.network :forwarded_port, guest: 22, host: 2252, protocol: "tcp"
 		node3.vm.provision "shell", inline: $create_ansible_user
 		node3.vm.provision "file", source: "./vagrant-ansible-authorized-keys", destination: "/tmp/authorized_keys"
 		node3.vm.provision "shell", inline: "mv /tmp/authorized_keys /home/ansible/.ssh/authorized_keys"
@@ -86,6 +89,7 @@ Vagrant.configure("2") do |config|
 		haproxylb0.vm.box = "rhel6-dev"
 		haproxylb0.vm.hostname = "haproxylb0"
 		haproxylb0.vm.network "private_network", ip: "192.168.60.24"
+    haproxylb0.vm.network :forwarded_port, guest: 22, host: 2253, protocol: "tcp"
 		haproxylb0.vm.provision "shell", inline: $create_ansible_user
 		haproxylb0.vm.provision "file", source: "./vagrant-ansible-authorized-keys", destination: "/tmp/authorized_keys"
 		haproxylb0.vm.provision "shell", inline: "mv /tmp/authorized_keys /home/ansible/.ssh/authorized_keys"
@@ -95,6 +99,7 @@ Vagrant.configure("2") do |config|
 		haproxylb1.vm.box = "rhel6-dev"
 		haproxylb1.vm.hostname = "haproxylb1"
 		haproxylb1.vm.network "private_network", ip: "192.168.60.25"
+    haproxylb1.vm.network :forwarded_port, guest: 22, host: 2254, protocol: "tcp"
 		haproxylb1.vm.provision "shell", inline: $create_ansible_user
 		haproxylb1.vm.provision "file", source: "./vagrant-ansible-authorized-keys", destination: "/tmp/authorized_keys"
 		haproxylb1.vm.provision "shell", inline: "mv /tmp/authorized_keys /home/ansible/.ssh/authorized_keys"
