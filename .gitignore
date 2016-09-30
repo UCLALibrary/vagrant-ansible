@@ -1,4 +1,5 @@
 .vagrant
 .git
-rhel6base-dev*
 vagrant-ansible_key
+rhel6base-dev*
+Virtualbox*
