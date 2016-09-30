@@ -37,13 +37,13 @@ Vagrant.configure("2") do |config|
 	config.vm.define "ansible" do |ansible|
 		ansible.vm.box = "rhel6-dev"
 		ansible.vm.hostname = "ansible"
-		ansible.vm.network "private_network", type: "dhcp"
+		ansible.vm.network "private_network", ip: "192.168.60.10"
 		ansible.vm.provision "shell", inline: $install_ansible
 		ansible.vm.provision "shell", inline: $create_ansible_user
 		ansible.vm.provision "file", source: "./vagrant-ansible-privkey", destination: "/tmp/id_rsa"
 		ansible.vm.provision "shell", inline: "mv /tmp/id_rsa /home/ansible/.ssh/id_rsa"
 		ansible.vm.provision "shell", inline: "sudo chown -R ansible:ansible /home/ansible/.ssh; sudo chmod 600 /home/ansible/.ssh/id_rsa"
-		ansible.vm.provision "file", source: "./vagrant-hosts", destination: "/tmp/hosts"
+		ansible.vm.provision "file", source: "./vagrant-ansible-hosts", destination: "/tmp/hosts"
 		ansible.vm.provision "shell", inline: "mv /tmp/hosts /etc/hosts"
 		ansible.vm.provision "shell", inline: "sudo chown -R root:root /etc/hosts; sudo chmod 644 /etc/hosts"
 		ansible.vm.provision "file", source: "./vagrant-known_hosts", destination: "/tmp/known_hosts"
@@ -52,15 +52,17 @@ Vagrant.configure("2") do |config|
 		ansible.vm.provision "file", source: "./vagrant-ansible_key", destination: "/tmp/ansible_key"
 		ansible.vm.provision "shell", inline: "mv /tmp/ansible_key /home/ansible/ansible_key"
 		ansible.vm.provision "shell", inline: "sudo chown -R ansible:ansible /home/ansible/ansible_key; sudo chmod 600 /home/ansible/ansible_key"
-		ansible.vm.synced_folder "ansibleroot/", "/etc/ansible", mount_options: ["uid=655,gid=655"]
+		ansible.vm.synced_folder "/Users/sgurnick/GIT_REPOS/ansible/", "/etc/ansible", mount_options: ["uid=655,gid=655"]
 	end
 
 	config.vm.define "node1" do |node1|
 		node1.vm.box = "rhel6-dev"
 		node1.vm.hostname = "node1"
-		node1.vm.network "private_network", ip: "192.168.60.22" 
-    node1.vm.network "forwarded_port", guest: 22, host: 2250, protocol: "tcp"
+		node1.vm.network "private_network", ip: "192.168.60.22"
+    		node1.vm.network "forwarded_port", guest: 22, host: 2250, protocol: "tcp"
 		node1.vm.provision "shell", inline: $create_ansible_user
+		node1.vm.provision "file", source: "./vagrant-node-hosts", destination: "/tmp/hosts"
+		node1.vm.provision "shell", inline: "mv /tmp/hosts /etc/hosts"
 		node1.vm.provision "file", source: "./vagrant-ansible-authorized-keys", destination: "/tmp/authorized_keys"
 		node1.vm.provision "shell", inline: "mv /tmp/authorized_keys /home/ansible/.ssh/authorized_keys"
 		node1.vm.provision "shell", inline: "sudo chown -R ansible:ansible /home/ansible/.ssh; sudo chmod 600 /home/ansible/.ssh/authorized_keys"
@@ -69,8 +71,10 @@ Vagrant.configure("2") do |config|
 		node2.vm.box = "rhel6-dev"
 		node2.vm.hostname = "node2"
 		node2.vm.network "private_network", ip: "192.168.60.23"
-    node2.vm.network :forwarded_port, guest: 22, host: 2251, protocol: "tcp"
+    		node2.vm.network :forwarded_port, guest: 22, host: 2251, protocol: "tcp"
 		node2.vm.provision "shell", inline: $create_ansible_user
+		node2.vm.provision "file", source: "./vagrant-node-hosts", destination: "/tmp/hosts"
+		node2.vm.provision "shell", inline: "mv /tmp/hosts /etc/hosts"
 		node2.vm.provision "file", source: "./vagrant-ansible-authorized-keys", destination: "/tmp/authorized_keys"
 		node2.vm.provision "shell", inline: "mv /tmp/authorized_keys /home/ansible/.ssh/authorized_keys"
 		node2.vm.provision "shell", inline: "sudo chown -R ansible:ansible /home/ansible/.ssh; sudo chmod 600 /home/ansible/.ssh/authorized_keys"
@@ -79,8 +83,10 @@ Vagrant.configure("2") do |config|
 		node3.vm.box = "rhel6-dev"
 		node3.vm.hostname = "node3"
 		node3.vm.network "private_network", ip: "192.168.60.19"
-    node3.vm.network :forwarded_port, guest: 22, host: 2252, protocol: "tcp"
+    		node3.vm.network :forwarded_port, guest: 22, host: 2252, protocol: "tcp"
 		node3.vm.provision "shell", inline: $create_ansible_user
+		node3.vm.provision "file", source: "./vagrant-node-hosts", destination: "/tmp/hosts"
+		node3.vm.provision "shell", inline: "mv /tmp/hosts /etc/hosts"
 		node3.vm.provision "file", source: "./vagrant-ansible-authorized-keys", destination: "/tmp/authorized_keys"
 		node3.vm.provision "shell", inline: "mv /tmp/authorized_keys /home/ansible/.ssh/authorized_keys"
 		node3.vm.provision "shell", inline: "sudo chown -R ansible:ansible /home/ansible/.ssh; sudo chmod 600 /home/ansible/.ssh/authorized_keys"
