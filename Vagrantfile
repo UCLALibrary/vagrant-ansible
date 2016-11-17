@@ -52,7 +52,7 @@ Vagrant.configure("2") do |config|
 		ansible.vm.provision "file", source: "./vagrant-ansible_key", destination: "/tmp/ansible_key"
 		ansible.vm.provision "shell", inline: "mv /tmp/ansible_key /home/ansible/ansible_key"
 		ansible.vm.provision "shell", inline: "sudo chown -R ansible:ansible /home/ansible/ansible_key; sudo chmod 600 /home/ansible/ansible_key"
-		ansible.vm.synced_folder "/Users/sgurnick/GIT_REPOS/ansible/", "/etc/ansible", mount_options: ["uid=655,gid=655"]
+		ansible.vm.synced_folder "ansibleroot/", "/etc/ansible", mount_options: ["uid=655,gid=655"]
 	end
 
 	config.vm.define "node1" do |node1|
