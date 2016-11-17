@@ -30,4 +30,6 @@ git clone git@github.com:UCLALibrary/ansible_uclalib_role_java_ant.git ansiblero
 git clone git@github.com:UCLALibrary/ansible_uclalib_role_java_maven.git ansibleroot/roles/uclalib_role_java_maven
 git clone git@github.com:UCLALibrary/ansible_uclalib_role_ntp.git ansibleroot/roles/uclalib_role_ntp
 git clone git@github.com:UCLALibrary/ansible_uclalib_role_autofs.git ansibleroot/roles/uclalib_role_autofs
+git clone git@github.com:UCLALibrary/uclalib_role_openldap.git ansibleroot/roles/uclalib_role_openldap
+git clone git@github.com:UCLALibrary/uclalib_role_kerberos.git ansibleroot/roles/uclalib_role_kerberos
 git clone git@github.com:UCLALibrary/ansible_uclalib_plays.git ansibleroot/plays
