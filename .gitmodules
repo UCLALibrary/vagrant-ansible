@@ -1,3 +1,0 @@
-[submodule "ansibleroot"]
-	path = ansibleroot
-	url = git@github.com:UCLALibrary/ansible_uclalib_configs.git
