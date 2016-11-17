@@ -24,7 +24,7 @@ git clone git@github.com:UCLALibrary/ansible_uclalib_role_dspace.git ansibleroot
 git clone git@github.com:UCLALibrary/ansible_uclalib_role_clamav.git ansibleroot/roles/uclalib_role_clamav
 git clone git@github.com:UCLALibrary/ansible_uclalib_custom_facts.git ansibleroot/roles/uclalib_custom_facts
 git clone git@github.com:UCLALibrary/ansible_uclalib_role_vim.git ansibleroot/roles/uclalib_role_vim
-git clone git@github.com:UCLALibrary/ansible_uclalib_uclalib_role_users.git ansibleroot/roles/uclalib_role_users
+git clone git@github.com:UCLALibrary/ansible_uclalib_role_users.git ansibleroot/roles/uclalib_role_users
 git clone git@github.com:UCLALibrary/ansible_uclalib_role_git.git ansibleroot/roles/uclalib_role_git
 git clone git@github.com:UCLALibrary/ansible_uclalib_role_java_ant.git ansibleroot/roles/uclalib_role_java_ant
 git clone git@github.com:UCLALibrary/ansible_uclalib_role_java_maven.git ansibleroot/roles/uclalib_role_java_maven
